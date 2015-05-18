@@ -27,15 +27,15 @@ begin
         case op is
             when "000" => T_result <= A and B;
             when "001" => T_result <= A or B;
+            when "010" => T_result <= A + B;
             when "110" => T_result <= A - B;
             when "111" =>
                 if (A < B) then
-                    T_result <= x"00000000";
+                    T_result <= x"00000001";
                 else
-                    result <= x"00000001";
+                    result <= x"00000000";
                 end if;
-            when "011"  => result <= x"00000000";
-            when others => T_result <= A + B;
+            when others => T_result <= x"00000000";
         end case;
         
         if(T_result = x"00000000") then

@@ -1,7 +1,7 @@
 ----------------------------------------------------------------------------------
 -- MIPS MONOCYCLE
 -- Module: ALU_Control - behavior
--- Module to control ALU 
+-- Control module to ALU 
 ----------------------------------------------------------------------------------
 
 library ieee;
@@ -14,7 +14,8 @@ entity ALU_Control is
     port(
         ALUOp: in std_logic_vector(1 downto 0);
         Funct: in std_logic_vector(5 downto 0);
-        op: out std_logic_vector(2 downto 0)
+        op: out std_logic_vector(2 downto 0);
+        JR: out std_logic
     );
 end ALU_Control;
 
@@ -22,16 +23,30 @@ architecture behavior of ALU_Control is
 begin
     process(ALUOp, Funct)
     begin
+        JR <= '0';
         case ALUOp is
+            -- LW, SW, ADDI
             when "00"   => op <= "010";
+            -- BEQ, BNE
             when "01"   => op <= "110";
+            -- SLTI
             when "11"   => op <= "111";
+            -- R-Format (10)
             when others =>
-                case Funct is
-                    when "100000" => op <= "010";
-                    when "100010" => op <= "110";
-                    when "100100" => op <= "000";
-                    when "100101" => op <= "001";
+                case Funct(3 downto 0) is
+                    -- ADD
+                    when "0000" => op <= "010";
+                    -- SUB
+                    when "0010" => op <= "110";
+                    -- AND
+                    when "0100" => op <= "000";
+                    -- OR
+                    when "0101" => op <= "001";
+                    -- JR
+                    when "1000" =>
+                        op <= "011";
+                        JR <= '1';
+                    -- Set-on-less-than
                     when others => op <= "111";
                 end case;
         end case;

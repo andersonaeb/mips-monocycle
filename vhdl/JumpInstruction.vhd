@@ -12,7 +12,7 @@ use ieee.numeric_std.all;
 entity JumpInstruction is
     port(
         instruction: std_logic_vector(25 downto 0);
-        pc: in std_logic_vector(31 downto 28);
+        pc: in std_logic_vector(4 downto 0);
         result: out std_logic_vector(31 downto 0)
     );
 end JumpInstruction;

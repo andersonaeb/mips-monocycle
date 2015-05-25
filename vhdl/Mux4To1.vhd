@@ -10,9 +10,9 @@ use ieee.numeric_std.all;
 
 entity Mux4To1 is
     port (
-        A, B, C, D: in std_logic_vector(31 downto 0);
+        A, B, C, D: in std_logic_vector(4 downto 0);
         Sel: in std_logic_vector(1 downto 0);
-        S: out std_logic_vector(31 downto 0)
+        S: out std_logic_vector(4 downto 0)
     );
 end Mux4To1;
 

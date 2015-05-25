@@ -11,7 +11,7 @@ use ieee.numeric_std.all;
 
 entity Control is
 	port(
-		instruction: in std_logic_vector(31 downto 26);
+		instruction: in std_logic_vector(5 downto 0);
 		PCtoRA, Jump, Beq, Bne, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite: out std_logic;
 		RegDst, ALUOp: out std_logic_vector(1 downto 0)
 	);

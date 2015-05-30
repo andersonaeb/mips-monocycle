@@ -10,8 +10,8 @@ use ieee.numeric_std.all;
 
 entity Extend16To32 is
     port(
-        s_in: in std_logic_vector(15 downto 0);
-        s_out: out std_logic_vector(31 downto 0)
+        s_in: in signed(15 downto 0);
+        s_out: out signed(31 downto 0)
     );
 end Extend16To32;
 

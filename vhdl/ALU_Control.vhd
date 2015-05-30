@@ -6,15 +6,13 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_unsigned.all;
-use ieee.std_logic_arith.all;
 use ieee.numeric_std.all;
 
 entity ALU_Control is
     port(
-        ALUOp: in std_logic_vector(1 downto 0);
-        Funct: in std_logic_vector(5 downto 0);
-        op: out std_logic_vector(2 downto 0);
+        ALUOp: in signed(1 downto 0);
+        Funct: in signed(5 downto 0);
+        op: out signed(2 downto 0);
         JR: out std_logic
     );
 end ALU_Control;

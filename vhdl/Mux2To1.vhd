@@ -10,13 +10,19 @@ use ieee.numeric_std.all;
 
 entity Mux2To1 is
     port (
-        A, B: in std_logic_vector(31 downto 0);
+        A, B: in signed(31 downto 0);
         Sel: in std_logic;
-        S: out std_logic_vector(31 downto 0)
+        S: out signed(31 downto 0)
     );
 end Mux2To1;
 
 architecture behavior of Mux2To1 is
 begin
-    S <= A when Sel = '1' else B;
+    process(A, B, Sel) is
+    begin
+        case Sel is
+            when '0'    => S <= A;
+            when others => S <= B;
+        end case;
+    end process;
 end behavior;

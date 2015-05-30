@@ -10,15 +10,15 @@ use ieee.numeric_std.all;
 
 entity Mux4To1 is
     port (
-        A, B, C, D: in std_logic_vector(4 downto 0);
-        Sel: in std_logic_vector(1 downto 0);
-        S: out std_logic_vector(4 downto 0)
+        A, B, C, D: in signed(4 downto 0);
+        Sel: in signed(1 downto 0);
+        S: out signed(4 downto 0)
     );
 end Mux4To1;
 
 architecture behavior of Mux4To1 is
 begin	
-    process(Sel) is
+    process(A, B, C, D, Sel) is
     begin
         case Sel is
             when "00"   => S <= A;
